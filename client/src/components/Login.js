@@ -4,9 +4,6 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import BubblePage from './BubblePage';
-const eraseToken = () => {
-  localStorage.setItem('token', '')
-};
 
 class Login extends React.Component {
   state = {
@@ -41,8 +38,6 @@ class Login extends React.Component {
   render() {
       return (
     <div>
-        <button onClick={eraseToken}
-        >Log Out</button>
             <form onSubmit={this.login}>
           <input
             type="text"
@@ -58,10 +53,6 @@ class Login extends React.Component {
           />
           <button>Log in</button>
         </form>
-{ localStorage.getItem('token') &&  <Link to={`/protected`}>
-              <BubblePage />
-    </Link> 
-}
  </div>
     );
   }

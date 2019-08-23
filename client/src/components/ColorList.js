@@ -36,6 +36,7 @@ const ColorList = ({ colors, updateColors }) => {
 
   const deleteColor = color => {
     // make a delete request to delete this color
+    setEditing(false)
     const deleteColor =
      axiosWithAuth().delete(`http://localhost:5000/api/colors/${colorID}`)
     .then(response => {
