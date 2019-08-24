@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import Login from "./components/Login";
 import BubblePage from "./components/BubblePage";
-import SaveColor from "./components/SaveColor";
 import PrivateRoute from "./components/PrivateRoute";
 import "./styles.scss";
 
 function App() {
-  const [colorList, setColorList] = useState([]);
   function EraseToken (props) {
     localStorage.setItem('token','')
-console.log('this is',props)
 props.history.push('/');
 return <div>Good Bye</div>
   }

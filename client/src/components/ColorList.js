@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 const initialColor = {
   color: "",
@@ -7,7 +6,6 @@ const initialColor = {
 };
 
 const ColorList = ({ colors, updateColors }) => {
-  console.log('codelist colors',colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor)
   const editColor = color => {
@@ -16,7 +14,6 @@ const ColorList = ({ colors, updateColors }) => {
   };
   let colorID = colorToEdit.id
 const tempColors = []
-  console.log('colorid is',colorID)
   function updatecolor (element,ix,arr) {
     if(colorID === arr[ix].id)
     {
@@ -36,18 +33,15 @@ const tempColors = []
         tempColors.push(arr[ix])  
         }
           };
-              console.log('colortoedit.id',colorToEdit.id)
   
   const saveEdit = e => {
     e.preventDefault();
     // Make a put request to save your updated color
     // think about where will you get the id from...
     // where is is saved right now?
-    console.log('color id is',colorID)
-    const saveColor =
+    // const saveColor =
      axiosWithAuth().put(`http://localhost:5000/api/colors/${colorID}`, colorToEdit)
     .then(response => {
-      console.log('put response',response)
     colors.map(updatecolor)
 updateColors(tempColors)
   })
@@ -59,10 +53,9 @@ updateColors(tempColors)
   const deleteColor = color => {
     // make a delete request to delete this color
     setEditing(false)
-    const deleteColor =
+    // const deleteColor =
      axiosWithAuth().delete(`http://localhost:5000/api/colors/${colorID}`)
     .then(response => {
-      console.log('delete response',response)
       colors.map(removecolor)
       updateColors(tempColors)
           })

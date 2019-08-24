@@ -2,8 +2,6 @@
 //Login.js
 import React from 'react';
 import axios from 'axios';
-import { Link } from "react-router-dom";
-import BubblePage from './BubblePage';
 
 class Login extends React.Component {
   state = {
@@ -27,9 +25,7 @@ class Login extends React.Component {
     axios
       .post('http://localhost:5000/api/login', this.state.credentials)
       .then(res => {
-        console.log('login',res)
         localStorage.setItem('token', res.data.payload)
-        console.log('login local',localStorage.getItem('token'))
 
       })
       .catch(err => console.log(err.response));
@@ -44,12 +40,14 @@ class Login extends React.Component {
             name="username"
             value={this.state.credentials.username}
             onChange={this.handleChange}
+            autoComplete="username"
           />
           <input
             type="password"
             name="password"
             value={this.state.credentials.password}
             onChange={this.handleChange}
+            autoComplete="current-password"
           />
           <button>Log in</button>
         </form>
