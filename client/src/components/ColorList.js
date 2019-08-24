@@ -9,6 +9,10 @@ const ColorList = ({ colors, updateColors }) => {
   const [editing, setEditing] = useState(false);
   const [adding, setAdding] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor)
+  const refresh = () => {
+    setEditing(false);
+    setAdding(false);
+  };
   const editColor = color => {
     setEditing(true);
     setColorToEdit(color);
@@ -87,7 +91,8 @@ const tempColors = []
 
   return (
     <div className="colors-wrap">
-      <p>colors</p>
+      <p>colors (click color to edit</p>
+      <p>click "X" twice to delete</p>
       <ul>
         {colors.map(color => (
           <li key={color.color} onClick={() => editColor(color)}>
@@ -107,6 +112,12 @@ const tempColors = []
       <span>
               <button  className="post-button" onClick={() => addColor()}>
                 Add Color
+              </button>{" "}
+              {/* {color.color} */}
+            </span>
+            <span>
+              <button  className="post-button" onClick={() => refresh()}>
+                Remove Entry Boxes
               </button>{" "}
               {/* {color.color} */}
             </span>

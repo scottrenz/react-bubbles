@@ -33,7 +33,7 @@ return <div>Good Bye</div>
 
         <Route exact path="/" component={Login} />
         <Route path="/logout" component={EraseToken} />
-        <PrivateRoute exact path="/protected" component={BubblePage} />
+        <PrivateRoute path="/protected" component={BubblePage} />
 
         {/* 
         
