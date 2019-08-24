@@ -112,7 +112,7 @@ const tempColors = []
 
   return (
     <div className="colors-wrap">
-      <p>colors (click color to edit</p>
+      <p>colors (click color to edit)</p>
       <p>click "X" twice to delete</p>
       <ul>
         {colors.map(color => (
