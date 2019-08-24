@@ -9,14 +9,34 @@ const initialColor = {
 const ColorList = ({ colors, updateColors }) => {
   console.log('codelist colors',colors);
   const [editing, setEditing] = useState(false);
-  const [colorToEdit, setColorToEdit] = useState(initialColor);
-
+  const [colorToEdit, setColorToEdit] = useState(initialColor)
   const editColor = color => {
     setEditing(true);
     setColorToEdit(color);
   };
   let colorID = colorToEdit.id
-  console.log('colortoedit.id',colorToEdit.id)
+const tempColors = []
+  console.log('colorid is',colorID)
+  function updatecolor (element,ix,arr) {
+    if(colorID === arr[ix].id)
+    {
+      tempColors.push(colorToEdit)
+    }
+    else
+    {
+    tempColors.push(arr[ix])  
+    }
+      };
+      function removecolor (element,ix,arr) {
+        if(colorID === arr[ix].id)
+        {
+        }
+        else
+        {
+        tempColors.push(arr[ix])  
+        }
+          };
+              console.log('colortoedit.id',colorToEdit.id)
   
   const saveEdit = e => {
     e.preventDefault();
@@ -28,7 +48,9 @@ const ColorList = ({ colors, updateColors }) => {
      axiosWithAuth().put(`http://localhost:5000/api/colors/${colorID}`, colorToEdit)
     .then(response => {
       console.log('put response',response)
-    })
+    colors.map(updatecolor)
+updateColors(tempColors)
+  })
     .catch(err => {
       console.log(err);
     });
@@ -41,7 +63,9 @@ const ColorList = ({ colors, updateColors }) => {
      axiosWithAuth().delete(`http://localhost:5000/api/colors/${colorID}`)
     .then(response => {
       console.log('delete response',response)
-    })
+      colors.map(removecolor)
+      updateColors(tempColors)
+          })
     .catch(err => {
       console.log(err);
     });
