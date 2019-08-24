@@ -42,6 +42,7 @@ class Login extends React.Component {
             onChange={this.handleChange}
             autoComplete="username"
           />
+          username
           <input
             type="password"
             name="password"
@@ -49,7 +50,8 @@ class Login extends React.Component {
             onChange={this.handleChange}
             autoComplete="current-password"
           />
-          <button>Log in</button>
+password
+          <button style={{width: '108px'}} >Log in</button>
         </form>
  </div>
     );

@@ -42,14 +42,31 @@ const tempColors = []
         tempColors.push(arr[ix])  
         }
           };
-  
-          const saveEdit = e => {
+          let nodup = true
+          function finddup (element,ix,arr) {
+            if(colorToEdit.color === arr[ix].color)
+            {
+             nodup = false
+            }
+              };
+      
+              function editdup (element,ix,arr) {
+                if(colorToEdit.color === arr[ix].color && colorToEdit.id !== arr[ix].id)
+                {
+                 nodup = false 
+                }
+                  };
+          
+              const saveEdit = e => {
             e.preventDefault();
-            // Make a put request to save your updated color
+            colors.map(editdup)
+            if(nodup)
+              // Make a put request to save your updated color
             // think about where will you get the id from...
             // where is is saved right now?
             // const saveColor =
-             axiosWithAuth().put(`http://localhost:5000/api/colors/${colorID}`, colorToEdit)
+{
+            axiosWithAuth().put(`http://localhost:5000/api/colors/${colorID}`, colorToEdit)
             .then(response => {
             colors.map(updatecolor)
         updateColors(tempColors)
@@ -58,14 +75,17 @@ const tempColors = []
               console.log(err);
             });
         };
-  
+      } 
         const postColor = e => {
           e.preventDefault();
+          colors.map(finddup)
+          if(nodup)
           // Make a put request to save your updated color
           // think about where will you get the id from...
           // where is is saved right now?
           // const saveColor =
-           axiosWithAuth().post(`http://localhost:5000/api/colors/`, colorToEdit)
+{
+          axiosWithAuth().post(`http://localhost:5000/api/colors/`, colorToEdit)
           .then(response => {
             // colors.map(updatecolor)
       updateColors(response.data)
@@ -73,7 +93,8 @@ const tempColors = []
           .catch(err => {
             console.log(err);
           });
-      };
+        }
+        };
               
   const deleteColor = color => {
     // make a delete request to delete this color
