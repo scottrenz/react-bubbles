@@ -12,7 +12,7 @@ const Bubbles = ({ colors }) => {
     setBubbleData(generateBubbleData);
   }, [colors]);
 
-   return (
+  return (
     <div className="bubble-wrap">
       <p>bubbles</p>
       <Svg width={400} height={400}>

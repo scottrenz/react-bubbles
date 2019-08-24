@@ -14,7 +14,7 @@ props.history.push('/');
 return <div>Good Bye</div>
   }
   return (
-    <div className="App">
+    <main>
     <Router>
       <div>
         <ul>
@@ -43,7 +43,7 @@ return <div>Good Bye</div>
       </div>
 
     </Router>
-    </div>
+    </main>
   );
 }
 
